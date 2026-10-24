@@ -1,5 +1,6 @@
 import { BookOpen, FolderArchive, FileSpreadsheet, CalendarCheck, Check } from 'lucide-react';
 import { FadeInUp, StaggerContainer, StaggerItem } from './FadeInUp';
+import digitalBundleImg from '../assets/images/digital_bundle_showcase_1792812592437.jpg';
 
 export function IncludedItems() {
   const deliverables = [
@@ -140,7 +141,7 @@ export function IncludedItems() {
           <div className="rounded-2xl overflow-hidden border border-white/10 relative bg-[#0B0F19] p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-8">
             <div className="w-full lg:w-1/2 aspect-video rounded-xl overflow-hidden bg-slate-900 border border-white/10 relative">
               <img
-                src="/src/assets/images/digital_bundle_showcase_1792812592437.jpg"
+                src={digitalBundleImg}
                 alt="Mockup do kit de ferramentas digitais e materiais de produtividade"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"

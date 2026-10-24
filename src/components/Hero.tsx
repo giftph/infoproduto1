@@ -2,6 +2,7 @@ import { CheckCircle2, ArrowRight, BookOpen, Sparkles, Layers } from 'lucide-rea
 import { motion, useReducedMotion } from 'framer-motion';
 import { trackEvent } from '../lib/analytics';
 import { FadeInUp } from './FadeInUp';
+import ebookCoverImg from '../assets/images/ebook_cover_ia_pratica_1792812590552.jpg';
 
 interface HeroProps {
   onCtaClick: () => void;
@@ -106,7 +107,7 @@ export function Hero({ onCtaClick }: HeroProps) {
               <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#0F1420] shadow-2xl transition-transform hover:scale-[1.01]">
                 <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
                   <img
-                    src="/src/assets/images/ebook_cover_ia_pratica_1792812590552.jpg"
+                    src={ebookCoverImg}
                     alt="Capa do E-book Guia IA na Prática 2.0"
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover object-center"
