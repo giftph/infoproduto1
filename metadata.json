@@ -1,0 +1,6 @@
+{
+  "name": "IA na Prática 2.0 - Kit de Produtividade com Inteligência Artificial",
+  "description": "Página de vendas de alta conversão para o infoproduto IA na Prática 2.0. Modelos práticos, biblioteca de prompts e ferramentas para organizar tarefas e simplificar o trabalho com IA.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
