@@ -13,6 +13,7 @@ import { FinalCta } from './components/FinalCta';
 import { Footer } from './components/Footer';
 import { trackEvent } from './lib/analytics';
 
+import { KIWIFY_CHECKOUT_URL, PRODUCT_CONFIG } from './config';
 import type { Variants } from 'framer-motion';
 
 export default function App() {
@@ -26,6 +27,15 @@ export default function App() {
     const offerElement = document.getElementById('oferta');
     if (offerElement) {
       offerElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleOpenCheckout = () => {
+    trackEvent('checkout_initiated', { price: PRODUCT_CONFIG.launchPrice });
+    if (KIWIFY_CHECKOUT_URL && KIWIFY_CHECKOUT_URL.trim() !== '') {
+      window.location.href = KIWIFY_CHECKOUT_URL.trim();
+    } else {
+      scrollToOffer();
     }
   };
 
@@ -57,7 +67,7 @@ export default function App() {
           animate="visible"
           variants={sectionFadeInUp}
         >
-          <Hero onCtaClick={scrollToOffer} />
+          <Hero onCtaClick={handleOpenCheckout} />
         </motion.div>
 
         {/* 3. Identificação do Problema */}
@@ -137,7 +147,7 @@ export default function App() {
           viewport={{ once: true, margin: '-60px' }}
           variants={sectionFadeInUp}
         >
-          <FinalCta onCtaClick={scrollToOffer} />
+          <FinalCta onCtaClick={handleOpenCheckout} />
         </motion.div>
       </main>
 

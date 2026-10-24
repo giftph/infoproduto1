@@ -8,7 +8,7 @@
  *    e um modal para testar a experiência com segurança sem quebrar o link.
  */
 
-export const KIWIFY_CHECKOUT_URL: string = "";
+export const KIWIFY_CHECKOUT_URL: string = "https://pay.kiwify.com.br/g3RuVEC";
 
 export const PRODUCT_CONFIG = {
   name: "IA na Prática 2.0",
