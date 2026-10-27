@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ArrowRight, ShieldCheck, Mail, Sparkles, FileText, Check } from 'lucide-react';
-import { KIWIFY_CHECKOUT_URL, PRODUCT_CONFIG } from '../config';
+import { CHECKOUT_URL, PRODUCT_CONFIG } from '../config';
 import { trackEvent } from '../lib/analytics';
 import { CheckoutNoticeModal } from './CheckoutNoticeModal';
 import { FadeInUp } from './FadeInUp';
@@ -8,16 +8,14 @@ import { FadeInUp } from './FadeInUp';
 export function OfferSection() {
   const [showNoticeModal, setShowNoticeModal] = useState(false);
 
-  const handleCheckoutClick = () => {
+  const handleCheckoutClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     trackEvent('checkout_initiated', { price: PRODUCT_CONFIG.launchPrice });
     
-    // Check if real or test URL is present
-    const testUrl = typeof window !== 'undefined' ? sessionStorage.getItem('KIWIFY_TEST_URL') : null;
-    const finalUrl = KIWIFY_CHECKOUT_URL || testUrl;
+    const testUrl = typeof window !== 'undefined' ? sessionStorage.getItem('CHECKOUT_TEST_URL') : null;
+    const finalUrl = CHECKOUT_URL || testUrl;
 
-    if (finalUrl && finalUrl.trim() !== '') {
-      window.location.href = finalUrl.trim();
-    } else {
+    if (!finalUrl || finalUrl.trim() === '') {
+      e.preventDefault();
       setShowNoticeModal(true);
     }
   };
@@ -89,17 +87,23 @@ export function OfferSection() {
 
               {/* Main Action Button */}
               <div className="mt-7">
-                <button
-                  type="button"
+                <a
+                  href={CHECKOUT_URL || '#'}
+                  target={CHECKOUT_URL ? '_blank' : undefined}
+                  rel={CHECKOUT_URL ? 'noopener noreferrer' : undefined}
                   onClick={handleCheckoutClick}
-                  className="w-full inline-flex items-center justify-center gap-3 py-4 px-6 text-sm sm:text-base font-bold tracking-wide text-white bg-violet-600 hover:bg-violet-500 active:scale-[0.99] rounded-xl shadow-lg shadow-violet-600/30 transition-all focus-visible:outline-2 focus-visible:outline-violet-400"
+                  className="w-full inline-flex items-center justify-center gap-3 py-4 px-6 text-sm sm:text-base font-bold tracking-wide text-white bg-violet-600 hover:bg-violet-500 active:scale-[0.99] rounded-xl shadow-lg shadow-violet-600/30 transition-all focus-visible:outline-2 focus-visible:outline-violet-400 text-center"
                 >
                   <span>QUERO MEU KIT IA NA PRÁTICA</span>
                   <ArrowRight className="w-5 h-5" />
-                </button>
-                <span className="text-[11px] text-slate-400 block mt-2.5">
-                  Processamento seguro via plataforma Kiwify
-                </span>
+                </a>
+                <div className="flex items-center justify-center gap-2 text-[11px] text-slate-400 mt-2.5 flex-wrap">
+                  <span className="text-violet-400 font-medium">Checkout Seguro Cakto</span>
+                  <span>·</span>
+                  <span>Pix (Aprovação Imediata)</span>
+                  <span>·</span>
+                  <span>Cartão até 12x</span>
+                </div>
               </div>
             </div>
 

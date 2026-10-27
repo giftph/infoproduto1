@@ -6,7 +6,7 @@ export function HowItWorks() {
     {
       number: "01",
       title: "Adquira o kit",
-      description: "O visitante realiza a compra de forma segura por meio do checkout oficial configurado pela plataforma Kiwify.",
+      description: "O visitante realiza a compra com total segurança através do checkout protegido da Cakto com criptografia SSL.",
       icon: ShoppingBag,
     },
     {

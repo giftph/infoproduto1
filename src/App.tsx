@@ -13,7 +13,7 @@ import { FinalCta } from './components/FinalCta';
 import { Footer } from './components/Footer';
 import { trackEvent } from './lib/analytics';
 
-import { KIWIFY_CHECKOUT_URL, PRODUCT_CONFIG } from './config';
+import { CHECKOUT_URL, PRODUCT_CONFIG } from './config';
 import type { Variants } from 'framer-motion';
 
 export default function App() {
@@ -32,8 +32,8 @@ export default function App() {
 
   const handleOpenCheckout = () => {
     trackEvent('checkout_initiated', { price: PRODUCT_CONFIG.launchPrice });
-    if (KIWIFY_CHECKOUT_URL && KIWIFY_CHECKOUT_URL.trim() !== '') {
-      window.location.href = KIWIFY_CHECKOUT_URL.trim();
+    if (CHECKOUT_URL && CHECKOUT_URL.trim() !== '') {
+      window.location.href = CHECKOUT_URL.trim();
     } else {
       scrollToOffer();
     }
@@ -120,7 +120,7 @@ export default function App() {
           <HowItWorks />
         </motion.div>
 
-        {/* 8. Oferta & Checkout Kiwify */}
+        {/* 8. Oferta & Checkout */}
         <motion.div
           initial="hidden"
           whileInView="visible"

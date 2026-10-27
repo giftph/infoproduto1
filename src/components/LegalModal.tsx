@@ -21,7 +21,7 @@ export function LegalModal({ type, onClose }: LegalModalProps) {
           </p>
           <h4 className="text-sm font-semibold text-white">1. Coleta de Dados</h4>
           <p>
-            Esta landing page não solicita nem armazena números de cartões de crédito, senhas ou dados bancários. Quaisquer transações financeiras e dados de pagamento são operados exclusivamente através da plataforma de checkout segura e homologada da Kiwify.
+            Esta landing page não solicita nem armazena números de cartões de crédito, senhas ou dados bancários. Quaisquer transações financeiras e dados de pagamento são operados exclusivamente através de gateways de pagamento seguros e homologados com criptografia SSL.
           </p>
           <h4 className="text-sm font-semibold text-white">2. Uso de Cookies e Métricas</h4>
           <p>
@@ -65,11 +65,11 @@ export function LegalModal({ type, onClose }: LegalModalProps) {
             <span className="font-semibold text-xs sm:text-sm">Garantia Legal de {PRODUCT_CONFIG.guaranteeDays} Dias</span>
           </div>
           <p>
-            Conforme estabelecido pelo artigo 49 do Código de Defesa do Consumidor brasileiro (CDC) e em conformidade com as diretrizes da Kiwify, você tem o direito de solicitar o cancelamento e reembolso integral do valor pago em até 7 (sete) dias corridos a partir da data de confirmação da compra.
+            Conforme estabelecido pelo artigo 49 do Código de Defesa do Consumidor brasileiro (CDC), você tem o direito de solicitar o cancelamento e reembolso integral do valor pago em até 7 (sete) dias corridos a partir da data de confirmação da compra.
           </p>
           <h4 className="text-sm font-semibold text-white">Como solicitar o reembolso:</h4>
           <p>
-            Basta acessar o link de suporte da Kiwify enviado em seu e-mail de confirmação da compra ou acionar o suporte ao comprador dentro do prazo estipulado. O estorno será processado pelo mesmo meio de pagamento utilizado.
+            Basta acionar o canal oficial de suporte dentro do prazo estipulado informando seus dados de compra. O estorno será processado pelo mesmo meio de pagamento utilizado.
           </p>
         </div>
       )

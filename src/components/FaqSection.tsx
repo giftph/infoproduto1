@@ -30,11 +30,15 @@ export function FaqSection() {
     },
     {
       question: "Como receberei o produto?",
-      answer: "Após a aprovação do pagamento pelo checkout seguro da Kiwify, você receberá automaticamente um e-mail com as instruções completas de acesso e links para baixar os materiais digitais."
+      answer: "Após a aprovação do pagamento pela plataforma segura da Cakto, você receberá automaticamente um e-mail com as instruções completas de acesso e links para baixar os materiais digitais."
+    },
+    {
+      question: "Quais são as formas de pagamento aceitas?",
+      answer: "Você pode pagar via Pix com aprovação imediata ou cartão de crédito em até 12x, em ambiente 100% criptografado e seguro processado pela Cakto."
     },
     {
       question: "Como funciona o reembolso?",
-      answer: "Você conta com a garantia legal de 7 dias prevista pelo Código de Defesa do Consumidor (CDC) e assegurada pela plataforma Kiwify. Caso o material não atenda às suas expectativas dentro desse prazo, você poderá solicitar o reembolso integral."
+      answer: "Você conta com a garantia legal de 7 dias prevista pelo Código de Defesa do Consumidor (CDC). Caso o material não atenda às suas expectativas dentro desse prazo, você poderá solicitar o reembolso integral com facilidade diretamente pelo suporte."
     }
   ];
 

@@ -1,6 +1,7 @@
 import { CheckCircle2, ArrowRight, BookOpen, Sparkles, Layers } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { trackEvent } from '../lib/analytics';
+import { CHECKOUT_URL } from '../config';
 import { FadeInUp } from './FadeInUp';
 import ebookCoverImg from '../assets/images/ebook_cover_ia_pratica_1792812590552.jpg';
 
@@ -14,6 +15,14 @@ export function Hero({ onCtaClick }: HeroProps) {
     const section = document.getElementById('o-que-esta-incluso');
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleHeroCta = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    trackEvent('click_cta_hero', { action: 'access_kit' });
+    if (!CHECKOUT_URL || CHECKOUT_URL.trim() === '') {
+      e.preventDefault();
+      onCtaClick();
     }
   };
 
@@ -51,17 +60,16 @@ export function Hero({ onCtaClick }: HeroProps) {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
-              <button
-                type="button"
-                onClick={() => {
-                  trackEvent('click_cta_hero', { action: 'access_kit' });
-                  onCtaClick();
-                }}
-                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-bold tracking-wide text-white bg-violet-600 hover:bg-violet-500 active:scale-[0.99] rounded-xl shadow-lg shadow-violet-600/25 transition-all focus-visible:outline-2 focus-visible:outline-violet-400 whitespace-nowrap"
+              <a
+                href={CHECKOUT_URL || '#oferta'}
+                target={CHECKOUT_URL ? '_blank' : undefined}
+                rel={CHECKOUT_URL ? 'noopener noreferrer' : undefined}
+                onClick={handleHeroCta}
+                className="inline-flex items-center justify-center gap-3 px-7 py-3.5 text-sm font-bold tracking-wide text-white bg-violet-600 hover:bg-violet-500 active:scale-[0.99] rounded-xl shadow-lg shadow-violet-600/25 transition-all focus-visible:outline-2 focus-visible:outline-violet-400 whitespace-nowrap text-center"
               >
                 <span>QUERO ACESSAR O KIT</span>
                 <ArrowRight className="w-4 h-4" />
-              </button>
+              </a>
 
               <button
                 type="button"

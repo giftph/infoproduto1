@@ -1,14 +1,15 @@
 /**
- * CONFIGURAÇÃO CENTRAL DO PRODUTO & CHECKOUT KIWIFY
+ * CONFIGURAÇÃO CENTRAL DO PRODUTO & CHECKOUT CAKTO
  * 
- * Para ativar o checkout real da Kiwify:
- * 1. Cole a URL do seu produto na Kiwify na constante KIWIFY_CHECKOUT_URL abaixo.
- *    Exemplo: "https://pay.kiwify.com.br/AbCdEfG"
- * 2. Se a constante estiver vazia (""), a página exibirá um aviso explicativo 
- *    e um modal para testar a experiência com segurança sem quebrar o link.
+ * Insira o link do seu checkout da Cakto na constante CHECKOUT_URL abaixo.
+ * Exemplo: "https://pay.cakto.com.br/SEU_CODIGO"
  */
 
-export const KIWIFY_CHECKOUT_URL: string = "https://pay.kiwify.com.br/g3RuVEC";
+export const CHECKOUT_URL: string = "https://pay.cakto.com.br/btraxd4_1248176";
+
+// Aliases para facilidade de configuração
+export const CAKTO_CHECKOUT_URL = CHECKOUT_URL;
+export const KIWIFY_CHECKOUT_URL = CHECKOUT_URL;
 
 export const PRODUCT_CONFIG = {
   name: "IA na Prática 2.0",
@@ -19,5 +20,7 @@ export const PRODUCT_CONFIG = {
   guaranteeDays: 7,
   format: "Materiais digitais (PDF de alta resolução, templates editáveis e planilhas)",
   accessType: "Acesso imediato enviado por e-mail após a confirmação do pagamento",
-  supportContact: "suporte@ianapratica.com.br", // Atualize com o canal oficial quando disponível
+  supportContact: "suporte@ianapratica.com.br",
+  paymentProviderName: "Cakto", // Plataforma oficial de pagamentos
 };
+

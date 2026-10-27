@@ -90,8 +90,8 @@ export function Footer() {
             <span>
               © {new Date().getFullYear()} {PRODUCT_CONFIG.name}. Todos os direitos reservados.
             </span>
-            <span className="font-mono text-slate-600">
-              Checkout & Processamento Seguro por Kiwify
+            <span className="font-mono text-slate-500">
+              Checkout Seguro via Cakto · Pix & Cartão · SSL
             </span>
           </div>
         </div>
