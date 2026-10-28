@@ -1,172 +1,117 @@
-import { BookOpen, FolderArchive, FileSpreadsheet, CalendarCheck, Check } from 'lucide-react';
-import { FadeInUp, StaggerContainer, StaggerItem } from './FadeInUp';
-import digitalBundleImg from '../assets/images/digital_bundle_showcase_1792812592437.jpg';
+import { FileText, Check } from 'lucide-react';
+import capaGuia from '../assets/images/capa_guia_metodo_claro_1793151000813.jpg';
+import capaPrompts from '../assets/images/capa_100_prompts_1793151013528.jpg';
+import capaTemplates from '../assets/images/capa_templates_produtividade_1793151028919.jpg';
+import capaDesafio from '../assets/images/capa_desafio_7_dias_1793151043045.jpg';
 
 export function IncludedItems() {
-  const deliverables = [
+  const materials = [
     {
-      category: "Produto principal",
-      title: "Guia IA na Prática 2.0",
-      description: "Explicações práticas sobre como formular instruções, utilizar modelos e revisar respostas com olhar crítico.",
-      badge: "E-book & Manual",
-      icon: BookOpen,
-      highlights: [
-        "Fundamentos de engenharia de instruções sem jargões",
-        "Como contornar alucinações e respostas genéricas",
-        "Método de 4 etapas para construir qualquer comando"
-      ],
-      isPrimary: true,
+      id: "guia",
+      title: "Guia Prático de Inteligência Artificial",
+      subtitle: "Com o Método CLARO",
+      phrase: "O passo a passo direto para orientar assistentes de IA e obter respostas úteis sem complicação.",
+      format: "PDF",
+      cover: capaGuia,
+      alt: "Capa do Guia Prático de IA com Método CLARO por MenteLabs",
+      highlight: "Método Exclusivo",
     },
     {
-      category: "Bônus 1",
-      title: "Biblioteca de Prompts",
-      description: "Coleção organizada de prompts para produtividade, marketing, comunicação e pequenos negócios.",
-      badge: "Arquivo de Consulta Rápida",
-      icon: FolderArchive,
-      highlights: [
-        "Mais de 50 estruturas testadas e categorizadas",
-        "Campos customizáveis para o seu nicho",
-        "Atalhos para rotinas administrativas e criativas"
-      ],
-      isPrimary: false,
+      id: "prompts",
+      title: "Biblioteca com 100 Prompts Prontos",
+      subtitle: "Em 10 Categorias Práticas",
+      phrase: "100 instruções estruturadas e testadas para copiar, preencher e usar na hora.",
+      format: "PDF",
+      cover: capaPrompts,
+      alt: "Capa da Biblioteca com 100 Prompts Prontos por MenteLabs",
+      highlight: "100 Modelos",
     },
     {
-      category: "Bônus 2",
-      title: "Modelos Editáveis",
-      description: "Estruturas reutilizáveis para planejamento, mensagens profissionais e organização de tarefas.",
-      badge: "Templates Prontos",
-      icon: FileSpreadsheet,
-      highlights: [
-        "Matriz de priorização de rotina diária",
-        "Estrutura de propostas e alinhamento de escopo",
-        "Checklist de validação de saídas de IA"
-      ],
-      isPrimary: false,
+      id: "templates",
+      title: "Templates de Produtividade Preenchíveis",
+      subtitle: "Formatos Editáveis",
+      phrase: "Modelos organizados com campos interativos para planejar semanas, tarefas e projetos.",
+      format: "PDF editável",
+      cover: capaTemplates,
+      alt: "Capa dos Templates de Produtividade Preenchíveis por MenteLabs",
+      highlight: "Interativo",
     },
     {
-      category: "Bônus 3",
-      title: "Desafio de Aplicação de 7 Dias",
-      description: "Um roteiro de atividades para praticar o conteúdo gradualmente sem sobrecarregar sua semana.",
-      badge: "Roteiro Guiado",
-      icon: CalendarCheck,
-      highlights: [
-        "1 atividade focada por dia (15 a 20 minutos)",
-        "Passo a passo com exemplos de antes e depois",
-        "Consolidação de um método pessoal de trabalho"
-      ],
-      isPrimary: false,
-    }
+      id: "desafio",
+      title: "Desafio de 7 Dias",
+      subtitle: "1 Exercício por Dia (30 a 45 min/dia)",
+      phrase: "Um plano guiado de uma semana para colocar o aprendizado em prática sem sobrecarga.",
+      format: "PDF",
+      cover: capaDesafio,
+      alt: "Capa do Desafio de 7 Dias por MenteLabs",
+      highlight: "7 Etapas",
+    },
   ];
 
   return (
-    <section id="o-que-esta-incluso" className="py-16 md:py-24 border-b border-white/5 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Header */}
-        <FadeInUp className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 text-xs font-semibold text-violet-400 uppercase tracking-wider mb-3">
-            <BookOpen className="w-3.5 h-3.5" />
-            <span>Materiais Inclusos</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
-            Tudo organizado para você começar.
+    <section id="o-que-esta-incluso" className="py-16 sm:py-24 border-b border-white/5 relative">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        {/* Cabeçalho */}
+        <div className="text-center max-w-2xl mx-auto mb-12">
+          <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider block mb-2">
+            Conteúdo Entregue
+          </span>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+            O que está incluso no kit
           </h2>
-          <p className="mt-3 text-base text-slate-400">
-            Arquivos digitais planejados para consulta imediata no computador ou no celular, sem enrolação.
+          <p className="mt-3 text-sm sm:text-base text-slate-400">
+            4 materiais digitais em PDF entregues imediatamente para ler e usar no celular ou computador.
           </p>
-        </FadeInUp>
+        </div>
 
-        {/* Deliverables Grid with Stagger */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12" staggerDelay={0.08}>
-          {deliverables.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <StaggerItem
-                key={idx}
-                className={`p-6 sm:p-7 rounded-2xl glass-panel relative flex flex-col justify-between transition-all ${
-                  item.isPrimary
-                    ? 'border-violet-500/40 bg-[#0E1322] shadow-lg shadow-violet-950/20'
-                    : 'border-white/5 hover:border-white/15'
-                }`}
-              >
-                <div>
-                  {/* Top metadata */}
-                  <div className="flex items-center justify-between gap-3 mb-4">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-violet-400">
-                      {item.category}
-                    </span>
-                    <span className="text-xs text-slate-400 font-mono">
-                      {item.badge}
-                    </span>
-                  </div>
-
-                  {/* Header Title with Icon */}
-                  <div className="flex items-start gap-4 mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center text-violet-300 shrink-0">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
-                        {item.title}
-                      </h3>
-                      <p className="mt-1 text-xs sm:text-sm text-slate-300 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Highlights Bullet List */}
-                  <div className="mt-6 pt-5 border-t border-white/5 space-y-2.5">
-                    {item.highlights.map((bullet, bulletIdx) => (
-                      <div key={bulletIdx} className="flex items-start gap-2.5">
-                        <Check className="w-4 h-4 text-violet-400 shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-slate-300">
-                          {bullet}
-                        </span>
-                      </div>
-                    ))}
+        {/* Grade com os 4 Cartões Reais */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {materials.map((item) => (
+            <div
+              key={item.id}
+              className="rounded-2xl bg-[#0D121F] border border-white/10 hover:border-violet-500/30 transition-all flex flex-col justify-between overflow-hidden shadow-lg shadow-black/40"
+            >
+              <div>
+                {/* Capa Real com proporção correta */}
+                <div className="relative aspect-[3/4] bg-[#080B11] overflow-hidden border-b border-white/5 group">
+                  <img
+                    src={item.cover}
+                    alt={item.alt}
+                    loading="lazy"
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
+                    width={400}
+                    height={533}
+                  />
+                  <div className="absolute top-3 right-3 px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-violet-600/90 text-white backdrop-blur-sm">
+                    {item.format}
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-                  <span>Formato Digital</span>
-                  <span className="text-slate-300">Incluso no pacote</span>
-                </div>
-              </StaggerItem>
-            );
-          })}
-        </StaggerContainer>
-
-        {/* Visual asset preview */}
-        <FadeInUp delay={0.15}>
-          <div className="rounded-2xl overflow-hidden border border-white/10 relative bg-[#0B0F19] p-6 sm:p-8 flex flex-col lg:flex-row items-center gap-8">
-            <div className="w-full lg:w-1/2 aspect-video rounded-xl overflow-hidden bg-slate-900 border border-white/10 relative">
-              <img
-                src={digitalBundleImg}
-                alt="Mockup do kit de ferramentas digitais e materiais de produtividade"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="w-full lg:w-1/2 space-y-4">
-              <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider block">
-                Acesso Centralizado
-              </span>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
-                Praticidade para abrir, copiar e aplicar onde você estiver.
-              </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
-                Todos os materiais são disponibilizados em formatos digitais limpos, leves e legíveis em qualquer dispositivo — seja no notebook durante o expediente ou no smartphone entre compromissos.
-              </p>
-              <div className="pt-2 flex items-center gap-6 text-xs text-slate-400">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-violet-400" />
-                  <span>Compatível com ChatGPT, Claude e Gemini</span>
+                {/* Conteúdo descritivo */}
+                <div className="p-5">
+                  <div className="text-[11px] font-mono text-violet-400 font-medium mb-1">
+                    {item.subtitle}
+                  </div>
+                  <h3 className="text-base font-bold text-white mb-2 leading-snug">
+                    {item.title}
+                  </h3>
+                  <p className="text-xs text-slate-300 leading-relaxed">
+                    {item.phrase}
+                  </p>
                 </div>
               </div>
+
+              {/* Rodapé do cartão com o formato */}
+              <div className="px-5 py-3 bg-[#080B11]/60 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-400">
+                <span className="flex items-center gap-1 text-emerald-400 font-medium">
+                  <Check className="w-3.5 h-3.5" />
+                  Incluso no kit
+                </span>
+                <span className="font-mono text-slate-400">Formato: {item.format}</span>
+              </div>
             </div>
-          </div>
-        </FadeInUp>
+          ))}
+        </div>
       </div>
     </section>
   );

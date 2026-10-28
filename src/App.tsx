@@ -1,158 +1,87 @@
 import { useEffect } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ProblemSection } from './components/ProblemSection';
-import { SolutionSection } from './components/SolutionSection';
-import { InteractivePromptGenerator } from './components/InteractivePromptGenerator';
+import { BeforeAfterSection } from './components/BeforeAfterSection';
+import { ClaroMethodSection } from './components/ClaroMethodSection';
 import { IncludedItems } from './components/IncludedItems';
-import { HowItWorks } from './components/HowItWorks';
+import { PromptExampleSection } from './components/PromptExampleSection';
+import { PromptCategoriesSection } from './components/PromptCategoriesSection';
+import { SevenDayChallengeSection } from './components/SevenDayChallengeSection';
+import { TargetAudienceSection } from './components/TargetAudienceSection';
 import { OfferSection } from './components/OfferSection';
 import { FaqSection } from './components/FaqSection';
-import { FinalCta } from './components/FinalCta';
+import { FinalDisclaimer } from './components/FinalDisclaimer';
 import { Footer } from './components/Footer';
+import { StickyMobileBar } from './components/StickyMobileBar';
 import { trackEvent } from './lib/analytics';
-
-import { CHECKOUT_URL, PRODUCT_CONFIG } from './config';
-import type { Variants } from 'framer-motion';
+import { getCheckoutUrlWithUtms } from './config';
 
 export default function App() {
-  const shouldReduceMotion = useReducedMotion();
-
   useEffect(() => {
-    trackEvent('page_view', { page: 'landing_ia_na_pratica_2' });
+    trackEvent('page_view', { page: 'landing_ia_na_pratica_2_mentelabs' });
   }, []);
 
-  const scrollToOffer = () => {
-    const offerElement = document.getElementById('oferta');
-    if (offerElement) {
-      offerElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleOpenCheckout = () => {
-    trackEvent('checkout_initiated', { price: PRODUCT_CONFIG.launchPrice });
-    if (CHECKOUT_URL && CHECKOUT_URL.trim() !== '') {
-      window.location.href = CHECKOUT_URL.trim();
+    const targetUrl = getCheckoutUrlWithUtms();
+    if (targetUrl && targetUrl !== '#') {
+      window.location.href = targetUrl;
     } else {
-      scrollToOffer();
-    }
-  };
-
-  // Subtle fade-in-up variants for App sections
-  const sectionFadeInUp: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: shouldReduceMotion ? 0 : 30 
-    },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: shouldReduceMotion ? 0 : 0.6,
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      const offerElement = document.getElementById('oferta');
+      if (offerElement) {
+        offerElement.scrollIntoView({ behavior: 'smooth' });
       }
     }
   };
 
   return (
     <div className="min-h-screen bg-[#080B11] text-slate-100 flex flex-col font-sans selection:bg-violet-600 selection:text-white">
-      {/* 1. Header (Navigation) */}
-      <Header onCtaClick={scrollToOffer} />
+      {/* 1. Cabeçalho de Navegação */}
+      <Header onCtaClick={handleOpenCheckout} />
 
       <main className="flex-1 overflow-hidden">
-        {/* 2. Hero Principal */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={sectionFadeInUp}
-        >
-          <Hero onCtaClick={handleOpenCheckout} />
-        </motion.div>
+        {/* a) Hero Principal */}
+        <Hero onCtaClick={handleOpenCheckout} />
 
-        {/* 3. Identificação do Problema */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <ProblemSection />
-        </motion.div>
+        {/* b) Identificação do Problema */}
+        <ProblemSection />
 
-        {/* 4. Apresentação da Solução */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <SolutionSection />
-        </motion.div>
+        {/* c) Antes e Depois (Exemplo Real do Guia) */}
+        <BeforeAfterSection />
 
-        {/* 5. Demonstração Interativa ("Monte seu próprio prompt de IA") */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <InteractivePromptGenerator />
-        </motion.div>
+        {/* d) O Método CLARO (5 Passos) */}
+        <ClaroMethodSection />
 
-        {/* 6. O Que Você Recebe */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <IncludedItems />
-        </motion.div>
+        {/* e) O que está incluso (4 Materiais com Capas Reais MenteLabs) */}
+        <IncludedItems />
 
-        {/* 7. Como Funciona (3 Etapas) */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <HowItWorks />
-        </motion.div>
+        {/* f) Exemplo de Prompt da Biblioteca */}
+        <PromptExampleSection />
 
-        {/* 8. Oferta & Checkout */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <OfferSection />
-        </motion.div>
+        {/* g) As 10 Categorias de Prompts em Chips */}
+        <PromptCategoriesSection />
 
-        {/* 9. Perguntas Frequentes (FAQ) */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <FaqSection />
-        </motion.div>
+        {/* h) Desafio de 7 Dias (1 exercício/dia) */}
+        <SevenDayChallengeSection />
 
-        {/* 10. Chamada Final */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={sectionFadeInUp}
-        >
-          <FinalCta onCtaClick={handleOpenCheckout} />
-        </motion.div>
+        {/* i) Para quem é / Para quem não é */}
+        <TargetAudienceSection />
+
+        {/* j) Preço e Botão de Compra Final */}
+        <OfferSection onCtaClick={handleOpenCheckout} />
+
+        {/* k) Perguntas Frequentes (FAQ) */}
+        <FaqSection />
+
+        {/* l) Aviso Final Educativo */}
+        <FinalDisclaimer />
       </main>
 
-      {/* 11. Rodapé & Avisos Legais */}
+      {/* Rodapé e Transparência Legal */}
       <Footer />
+
+      {/* Barra Fixa no Rodapé para Celular */}
+      <StickyMobileBar />
     </div>
   );
 }

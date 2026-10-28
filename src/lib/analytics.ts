@@ -1,6 +1,6 @@
 /**
- * Camada de eventos de conversão e telemetria transparente.
- * Preparada para Meta Pixel, Google Analytics (GA4) ou log local sem violar privacidade.
+ * Camada de rastreamento de conversão e disparo de pixels de tráfego pago.
+ * Otimizado para visitantes do TikTok Ads, Meta Ads (Instagram/Facebook) e Google.
  */
 
 export type ConversionEvent = 
@@ -9,33 +9,66 @@ export type ConversionEvent =
   | 'click_cta_nav'
   | 'click_cta_offer'
   | 'click_cta_final'
-  | 'prompt_generator_interact'
-  | 'prompt_generator_copied'
+  | 'click_cta_sticky'
   | 'checkout_initiated'
-  | 'faq_expanded'
-  | 'category_tab_switched';
+  | 'prompt_copied'
+  | 'prompt_generator_copied'
+  | 'prompt_generator_interact'
+  | 'category_tab_switched'
+  | 'faq_expanded';
 
 export function trackEvent(eventName: ConversionEvent, payload?: Record<string, unknown>) {
-  // Disparo para dataLayer (GTM / GA4) se presente no window
-  if (typeof window !== 'undefined' && (window as unknown as { dataLayer?: unknown[] }).dataLayer) {
-    (window as unknown as { dataLayer: unknown[] }).dataLayer.push({
+  if (typeof window === 'undefined') return;
+
+  const eventPayload = {
+    content_name: 'IA na Prática 2.0',
+    value: 29.90,
+    currency: 'BRL',
+    ...payload,
+  };
+
+  // =========================================================================
+  // [PIXEL_META] — DISPARO DE EVENTO DE CLIQUE NO BOTÃO DE COMPRA
+  // =========================================================================
+  const winMeta = window as unknown as { fbq?: (...args: unknown[]) => void };
+  if (typeof winMeta.fbq === 'function') {
+    if (eventName === 'checkout_initiated' || eventName.startsWith('click_cta')) {
+      // Disparo padrão InitiateCheckout no Meta Pixel ao clicar no botão de compra
+      winMeta.fbq('track', 'InitiateCheckout', eventPayload);
+    } else {
+      winMeta.fbq('trackCustom', eventName, eventPayload);
+    }
+  }
+
+  // =========================================================================
+  // [PIXEL_TIKTOK] — DISPARO DE EVENTO DE CLIQUE NO BOTÃO DE COMPRA
+  // =========================================================================
+  const winTikTok = window as unknown as { ttq?: { track?: (...args: unknown[]) => void } };
+  if (winTikTok.ttq && typeof winTikTok.ttq.track === 'function') {
+    if (eventName === 'checkout_initiated' || eventName.startsWith('click_cta')) {
+      // Disparo padrão InitiateCheckout no TikTok Pixel ao clicar no botão de compra
+      winTikTok.ttq.track('InitiateCheckout', {
+        content_name: 'IA na Prática 2.0',
+        content_type: 'product',
+        value: 29.90,
+        currency: 'BRL',
+      });
+    } else {
+      winTikTok.ttq.track('ClickButton', { button_name: eventName });
+    }
+  }
+
+  // Google Analytics / GTM dataLayer
+  const winDataLayer = window as unknown as { dataLayer?: unknown[] };
+  if (Array.isArray(winDataLayer.dataLayer)) {
+    winDataLayer.dataLayer.push({
       event: eventName,
-      ...payload,
+      ...eventPayload,
       timestamp: new Date().toISOString(),
     });
   }
 
-  // Disparo para fbq (Meta Pixel) se instalado
-  if (typeof window !== 'undefined' && (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq) {
-    if (eventName === 'checkout_initiated') {
-      (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('track', 'InitiateCheckout', payload);
-    } else {
-      (window as unknown as { fbq: (...args: unknown[]) => void }).fbq('trackCustom', eventName, payload);
-    }
-  }
-
-  // Log discreto em ambiente de desenvolvimento para verificação do produtor
   if (import.meta.env.DEV) {
-    console.debug(`[Analytics Track] ${eventName}:`, payload);
+    console.debug(`[Event Tracked] ${eventName}:`, eventPayload);
   }
 }
